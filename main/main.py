@@ -11,12 +11,6 @@ r = Redis(host='redis', port=6379 , db=1)
 title_db = Redis(host='redis', port=6379, db=2)
 
 
-rss_urls = [
-"https://www.farsnews.ir/rss",
-"https://www.mehrnews.com/rss",
-"https://www.irna.ir/rss",
-"https://www.isna.ir/rss"
-]
 
 redis_rss_set = 'rss_urls'
 redis_links_set = "links"
