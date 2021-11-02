@@ -1,0 +1,38 @@
+version: '3.5'
+
+services:
+  redis:
+    container_name: 'redis'
+    hostname: 'redis'
+    image: 'dockerhub.ir/redis:5.0.7'
+    ports:
+      - '6378:6379'
+    #volumes:
+    # - 'redisdata:/data'
+  app:
+    container_name: 'app'
+    #image: 'pymain'
+    build:
+      context: ./main
+      dockerfile: Dockerfile
+    depends_on:
+      - redis
+      - rss
+
+  app2:
+    container_name: 'app2'
+    #image: 'pymain'
+    build:
+      context: ./main
+      dockerfile: Dockerfile
+    depends_on:
+      - redis
+         
+  rss:
+    container_name: 'rss'
+    #image: 'pyrss'
+    build:
+      context: ./rss
+      dockerfile: Dockerfile
+    volumes:
+      - "./rss_urls:/rss_urls"
